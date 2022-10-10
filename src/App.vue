@@ -1,17 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav>
+    <router-link to="/">Валюты</router-link> |
+    <router-link to="/converter">Конвертер</router-link>
+  </nav>
+  <router-view />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { useStore } from "@/stores/Store";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const storeValutes = useStore();
+
+storeValutes.getData();
+
 </script>
 
 <style>
@@ -21,6 +22,27 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.component__input {
+  width: 20%;
+  margin: 0 0 1% 0;
+  border: solid 2px #eeeeee;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 18px;
 }
 </style>
